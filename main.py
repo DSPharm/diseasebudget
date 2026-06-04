@@ -2,12 +2,13 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
-
 templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
 def home(request: Request):
+    data = {"name": "Eugen", "age": 20}
+
     return templates.TemplateResponse("index.html", {
-    "request": request,
-    "data": some_dict
-})
+        "request": request,
+        "data": data
+    })
