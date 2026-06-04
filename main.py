@@ -1,7 +1,13 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def home():
-    return {"status": "ok"}
+    return """
+    <html>
+        <h1>Disease Budget</h1>
+    </html
+    """
+
