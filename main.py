@@ -1,13 +1,10 @@
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
-@app.get("/", response_class=HTMLResponse)
-def home():
-    return """
-    <html>
-        <h1>Disease Budget</h1>
-    </html
-    """
+templates = Jinja2Templates(directory="templates")
 
+@app.get("/")
+def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
